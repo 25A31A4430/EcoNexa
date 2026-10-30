@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoNexa | Smart Energy Intelligence</title>
+    <link rel="icon" type="image/png" href="/images/econexa-logo.png">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .brand-logo {
+            display: block;
+            width: 150px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .solutions-section {
+            padding: 80px 7%;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .solution-card {
+            padding: 24px;
+            border: 1px solid rgba(100, 220, 230, 0.18);
+            border-radius: 18px;
+            background: rgba(16, 26, 34, 0.72);
+        }
+
+        .solution-card .solution-symbol {
+            display: inline-grid;
+            place-items: center;
+            width: 46px;
+            height: 46px;
+            margin-bottom: 18px;
+            border-radius: 14px;
+            background: rgba(106, 220, 170, 0.12);
+            color: #8ee8bd;
+            font-size: 24px;
+        }
+
+        .solution-card h3 {
+            margin: 0 0 10px;
+        }
+
+        .solution-card p {
+            line-height: 1.7;
+        }
+
+        .solution-card a {
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 900px) {
+            .solutions-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .brand-logo {
+                width: 118px;
+                height: 40px;
+            }
+
+            .solutions-section {
+                padding: 56px 5%;
+            }
+
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-image {
+            width: 100%;
+            margin: 24px 0;
+            overflow: hidden;
+            border-radius: 18px;
+            border: 1px solid rgba(100, 220, 230, 0.18);
+            background: #101a22;
+        }
+
+        .section-image img {
+            display: block;
+            width: 100%;
+            max-height: 340px;
+            object-fit: cover;
+        }
+
+        .feature-image {
+            width: 100%;
+            height: 170px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #101a22;
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+
+        .feature-image img:hover {
+            transform: scale(1.04);
+        }
+
+        @media (max-width: 600px) {
+            .section-image img {
+                max-height: 230px;
+            }
+
+            .feature-image {
+                height: 145px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <a href="#home" class="logo" aria-label="EcoNexa home">
+            <img class="brand-logo" src="/images/econexa-logo.png" alt="EcoNexa">
+        </a>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#solutions">Solutions</a>
+            <a href="#features">Features</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#impact">Impact</a>
+        </nav>
+
+        <a href="#dashboard" class="nav-button">Explore Dashboard ↗</a>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="eyebrow">
+                    <span class="pulse"></span>
+                    INTELLIGENT ENERGY PLATFORM
+                </div>
+
+                <h1>Power smarter.<br>Live <span>greener.</span></h1>
+
+                <p>
+                    Understand your energy. Detect waste. Discover savings.
+                    EcoNexa turns everyday energy data into smarter,
+                    more sustainable decisions.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#dashboard" class="primary-button">Explore Dashboard ↗</a>
+                    <a href="#features" class="secondary-button">Discover Features</a>
+                </div>
+
+                <div class="hero-note">
+                    <span>✦</span>
+                    AI-assisted insights · Sustainable living · Smarter decisions
+                </div>
+            </div>
+
+            <div class="energy-visual">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+
+                <div class="energy-core">
+                    <div class="core-icon">ϟ</div>
+                    <div class="core-label">ENERGY INTELLIGENCE</div>
+                    <div class="core-status"><span></span> SYSTEM ACTIVE</div>
+                </div>
+
+                <div class="float-card solar-card">
+                    <span class="float-icon">☀</span>
+                    <div>
+                        <small>Solar generation</small>
+                        <strong>+12.8 kWh</strong>
+                    </div>
+                </div>
+
+                <div class="float-card carbon-card">
+                    <span class="float-icon green-icon">↘</span>
+                    <div>
+                        <small>Carbon impact</small>
+                        <strong>Lower is better</strong>
+                    </div>
+                </div>
+
+                <div class="visual-caption">ENERGY · INSIGHTS · IMPACT</div>
+            </div>
+        </section>
+
+        <!-- SOLUTIONS -->
+        <section class="solutions-section" id="solutions">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">PRACTICAL PATHS TO SMARTER ENERGY</div>
+                    <h2>Solutions for a <span class="accent">greener future.</span></h2>
+                    <p>Turn energy information into practical steps for more efficient, sustainable living.</p>
+                </div>
+            </div>
+
+            <div class="solutions-grid">
+                <article class="solution-card">
+                    <div class="solution-symbol">ϟ</div>
+                    <div class="feature-number">01 / MANAGE</div>
+                    <h3>Smart Energy Management</h3>
+                    <p>Review electricity usage and estimated costs in one place, then identify opportunities to reduce unnecessary consumption.</p>
+                    <a href="#dashboard">View dashboard ↗</a>
+                </article>
+
+                <article class="solution-card">
+                    <div class="solution-symbol">☀</div>
+                    <div class="feature-number">02 / OPTIMIZE</div>
+                    <h3>Solar Energy Insights</h3>
+                    <p>Compare solar generation with household energy use to better understand how renewable energy can support your needs.</p>
+                    <a href="#solar">Explore solar insights ↗</a>
+                </article>
+
+                <article class="solution-card">
+                    <div class="solution-symbol">↘</div>
+                    <div class="feature-number">03 / REDUCE</div>
+                    <h3>Carbon Footprint Awareness</h3>
+                    <p>Explore estimated emissions linked to electricity use and learn how energy-saving choices may reduce environmental impact.</p>
+                    <a href="#impact">View impact tracker ↗</a>
+                </article>
+
+                <article class="solution-card">
+                    <div class="solution-symbol">✧</div>
+                    <div class="feature-number">04 / IMPROVE</div>
+                    <h3>Actionable Energy Insights</h3>
+                    <p>Investigate unusual usage patterns, compare what-if scenarios, and discover practical ways to use energy more efficiently.</p>
+                    <a href="#waste">Explore recommendations ↗</a>
+                </article>
+            </div>
+
+            <p class="summary-disclaimer">EcoNexa currently uses sample and simulated readings; these are not live hardware measurements.</p>
+        </section>
+
+        <!-- SMART ENERGY DASHBOARD -->
+        <section class="dashboard-section" id="dashboard">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">YOUR ENERGY AT A GLANCE</div>
+                    <h2>Energy overview<span class="accent">.</span></h2>
+                    <p>A sample snapshot of your energy ecosystem.</p>
+                </div>
+
+                <div class="demo-label"><span></span> DEMO DATA</div>
+            </div>
+
+            <div class="section-image">
+                <img src="images/energy-dashboard.png"
+                     alt="Smart energy dashboard and electricity monitoring"
+                     loading="lazy">
+            </div>
+
+            <div class="stats-grid">
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>Electricity usage</span>
+                        <span class="stat-icon cyan">ϟ</span>
+                    </div>
+
+                    <div class="stat-value">
+                        <span id="electricityUsageValue">248.6</span>
+                        <small>kWh</small>
+                    </div>
+
+                    <div class="stat-foot">Illustrative monthly consumption</div>
+
+                    <div class="mini-bars">
+                        <i></i><i></i><i></i><i></i><i></i><i></i>
+                        <i></i><i></i><i></i><i></i><i></i><i></i>
+                    </div>
+                </article>
+                                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>Estimated bill</span>
+                        <span class="stat-icon violet">₹</span>
+                    </div>
+
+                    <div class="stat-value">
+                        ₹<span id="estimatedBillValue">1,865</span>
+                    </div>
+
+                    <div class="stat-foot">Example cost estimate</div>
+
+                    <div class="stat-line violet-line">
+                        <span style="width:64%"></span>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>Solar generation</span>
+                        <span class="stat-icon yellow">☀</span>
+                    </div>
+
+                    <div class="stat-value">
+                        <span id="solarGenerationValue">86.2</span>
+                        <small>kWh</small>
+                    </div>
+
+                    <div class="stat-foot">Illustrative solar output</div>
+
+                    <div class="stat-line yellow-line">
+                        <span style="width:72%"></span>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>Carbon emissions</span>
+                        <span class="stat-icon green">♧</span>
+                    </div>
+
+                    <div class="stat-value">
+                        <span id="dashboardCarbonValue">142.4</span>
+                        <small>kg CO₂</small>
+                    </div>
+
+                    <div class="stat-foot">Estimated footprint</div>
+
+                    <div class="stat-line green-line">
+                        <span style="width:48%"></span>
+                    </div>
+                </article>
+            </div>
+
+            <div class="insight-banner">
+                <div class="insight-symbol">✧</div>
+
+                <div>
+                    <strong>Your energy journey starts here.</strong>
+                    <p>
+                        Explore sample insights, compare scenarios, and discover
+                        where energy efficiency could make a difference.
+                    </p>
+                </div>
+
+                <a href="#features">Explore insights ↗</a>
+            </div>
+        </section>
+
+        <!-- FIVE FEATURES -->
+        <section class="features-section" id="features">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">BUILT FOR A GREENER TOMORROW</div>
+                    <h2>One platform. <span>Five possibilities.</span></h2>
+                    <p>
+                        From detecting energy waste to understanding your
+                        environmental impact.
+                    </p>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <article class="feature-card">
+                    <div class="feature-image">
+                        <img src="images/energy-dashboard.png"
+                             alt="Smart energy monitoring dashboard"
+                             loading="lazy">
+                    </div>
+
+                    <div class="feature-icon cyan">⌁</div>
+                    <div class="feature-number">01 / MONITOR</div>
+                    <h3>Smart Energy Dashboard</h3>
+                    <p>
+                        Explore consumption, estimated costs, solar output,
+                        and carbon indicators in one view.
+                    </p>
+                    <a href="#dashboard">View overview ↗</a>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-image">
+                        <img src="images/energy-waste.png"
+                             alt="Detecting unnecessary household energy use"
+                             loading="lazy">
+                    </div>
+
+                    <div class="feature-icon violet">⌕</div>
+                    <div class="feature-number">02 / DETECT</div>
+                    <h3>Energy Waste Detective</h3>
+                    <p>
+                        Identify unusual usage patterns and discover practical
+                        ways to reduce unnecessary consumption.
+                    </p>
+                    <a href="#waste">Explore detective ↗</a>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon yellow">⇄</div>
+                    <div class="feature-number">03 / SIMULATE</div>
+                    <h3>What-if Simulator</h3>
+                    <p>
+                        Compare energy scenarios and estimate how usage changes
+                        may affect your bill.
+                    </p>
+                    <a href="#simulator">Try the simulator ↗</a>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-image">
+                        <img src="images/solar-battery.png"
+                             alt="Solar panels and home battery storage"
+                             loading="lazy">
+                    </div>
+
+                    <div class="feature-icon green">☀</div>
+                    <div class="feature-number">04 / OPTIMIZE</div>
+                    <h3>Solar &amp; Battery Insights</h3>
+                    <p>
+                        Understand solar generation, battery levels, and
+                        energy drawn from the grid.
+                    </p>
+                    <a href="#solar">Explore energy flow ↗</a>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-image">
+                        <img src="images/carbon-impact.png"
+                             alt="Clean energy and environmental impact"
+                             loading="lazy">
+                    </div>
+
+                    <div class="feature-icon cyan">♧</div>
+                    <div class="feature-number">05 / SUSTAIN</div>
+                    <h3>Carbon &amp; Impact Tracker</h3>
+                    <p>
+                        Track estimated emissions and see how energy-saving
+                        scenarios could lower your footprint.
+                    </p>
+                    <a href="#impact">Explore impact ↗</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- ENERGY WASTE DETECTIVE -->
+        <section class="coming-section" id="waste">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">FEATURE 02 / DETECT</div>
+                    <h2>Energy Waste Detective<span class="accent">.</span></h2>
+                    <p>
+                        Explore unusual energy patterns and discover
+                        opportunities to save.
+                    </p>
+                </div>
+
+                <div class="demo-label"><span></span> SIMULATED READINGS</div>
+            </div>
+
+            <div class="section-image">
+                <img src="images/energy-waste.png"
+                     alt="Energy use monitoring and waste detection"
+                     loading="lazy">
+            </div>
+
+            <div class="detective-grid">
+                <article class="detective-card">
+                    <div class="feature-icon yellow">⚡</div>
+                    <div class="feature-number">SAMPLE ALERT 01</div>
+                    <h3>Unusual energy usage</h3>
+                    <p>
+                        Review periods when electricity consumption appears
+                        higher than expected.
+                    </p>
+
+                    <div class="summary-metric">
+                        <span>Example status</span>
+                        <strong>Review suggested</strong>
+                    </div>
+                </article>
+
+                <article class="detective-card">
+                    <div class="feature-icon violet">⌕</div>
+                    <div class="feature-number">SAMPLE ALERT 02</div>
+                    <h3>Potential standby waste</h3>
+                    <p>
+                        Check whether devices left on standby could be
+                        contributing to unnecessary consumption.
+                    </p>
+
+                    <div class="summary-metric">
+                        <span>Example status</span>
+                        <strong>Check devices</strong>
+                    </div>
+                </article>
+
+                <article class="detective-card detective-summary">
+                    <div class="feature-icon green">✧</div>
+                    <div class="feature-number">YOUR NEXT STEP</div>
+                    <h3>Turn alerts into action</h3>
+                    <p>
+                        Investigate sample energy alerts and explore ways to
+                        reduce unnecessary consumption.
+                    </p>
+
+                    <div class="summary-metric">
+                        <span>What EcoNexa helps you do</span>
+                        <strong>Detect · Understand · Improve</strong>
+                    </div>
+
+                    <p class="summary-disclaimer">
+                        These alerts use simulated values, not live sensor readings.
+                    </p>
+
+                    <a href="#simulator" class="primary-button">
+                        Test your own scenario ↗
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <!-- WHAT-IF SIMULATOR -->
+        <section class="simulator-section" id="simulator">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">PLAN BEFORE YOU CHANGE</div>
+                    <h2>What if you used less?</h2>
+                    <p>
+                        Adjust the sample values to estimate a possible
+                        monthly bill reduction.
+                    </p>
+                </div>
+            </div>
+
+            <div class="simulator-card">
+                <div class="simulator-controls">
+                    <label for="usage">
+                        Monthly energy usage
+                        <strong><span id="usageValue">250</span> kWh</strong>
+                    </label>
+
+                    <input id="usage" type="range"
+                           min="50" max="600" value="250" step="10">
+
+                    <div class="range-labels">
+                        <span>50 kWh</span>
+                        <span>600 kWh</span>
+                    </div>
+
+                    <label for="tariff">Estimated electricity rate (₹/kWh)</label>
+                    <input id="tariff" type="number"
+                           min="0" max="100" value="7" step="0.5">
+
+                    <p class="simulator-note">
+                        Illustrative calculation only. Actual bills may include
+                        fixed charges, taxes, and tariff slabs.
+                    </p>
+                </div>
+
+                <div class="simulator-result">
+                    <span class="result-label">ESTIMATED MONTHLY ENERGY COST</span>
+
+                    <div class="result-value">
+                        ₹<span id="billValue">1,750.00</span>
+                    </div>
+
+                    <div class="result-divider"></div>
+
+                    <span class="result-label">IF YOU REDUCE USAGE BY 15%</span>
+
+                    <div class="saving-value">
+                        ₹<span id="savingValue">262.50</span>
+                        <small>potential monthly savings</small>
+                    </div>
+
+                    <p id="simulatorMessage">
+                        A small change could make a difference over time.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOLAR & BATTERY INSIGHTS -->
+        <section class="solar-section" id="solar">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">FEATURE 04 / OPTIMIZE</div>
+                    <h2>Solar &amp; Battery Insights<span class="accent">.</span></h2>
+                    <p>
+                        Explore how solar generation, battery storage, and grid
+                        electricity work together.
+                    </p>
+                </div>
+
+                <div class="demo-label"><span></span> SIMULATED READINGS</div>
+            </div>
+
+            <div class="section-image">
+                <img src="images/solar-battery.png"
+                     alt="Solar panels, battery storage, and home energy"
+                     loading="lazy">
+            </div>
+
+            <div class="solar-metrics">
+                <article class="solar-card">
+                    <div class="solar-icon">☀</div>
+                    <span>Solar generated today</span>
+                    <strong>18.6 <small>kWh</small></strong>
+                    <p>Energy produced by your solar panels</p>
+                </article>
+
+                <article class="solar-card">
+                    <div class="solar-icon battery-icon">▰</div>
+                    <span>Battery charge</span>
+                    <strong>78<small>%</small></strong>
+                    <div class="battery-track"><div class="battery-fill"></div></div>
+                    <p>Illustrative stored-energy level</p>
+                </article>
+
+                <article class="solar-card">
+                    <div class="solar-icon home-icon">⌂</div>
+                    <span>Solar used at home</span>
+                    <strong>12.4 <small>kWh</small></strong>
+                    <p>Solar energy used directly by the home</p>
+                </article>
+
+                <article class="solar-card">
+                    <div class="solar-icon grid-icon">ϟ</div>
+                    <span>Grid electricity imported</span>
+                    <strong>6.2 <small>kWh</small></strong>
+                    <p>Illustrative electricity drawn from the grid</p>
+                </article>
+            </div>
+
+            <div class="energy-flow-card">
+                <div>
+                    <div class="eyebrow">HOW YOUR ENERGY FLOWS</div>
+                    <h3>From sunlight to smarter living</h3>
+                    <p>
+                        Use this sample flow to understand how generated energy can
+                        supply your home, charge a battery, or be supplemented by the grid.
+                    </p>
+                </div>
+
+                <div class="energy-flow">
+                    <div class="flow-node solar-node">
+                        <span>☀</span>
+                        <strong>Solar</strong>
+                        <small>18.6 kWh</small>
+                    </div>
+
+                    <div class="flow-connector">⟶</div>
+
+                    <div class="flow-node home-node">
+                        <span>⌂</span>
+                        <strong>Your home</strong>
+                        <small>Energy use</small>
+                    </div>
+
+                    <div class="flow-connector">⟷</div>
+
+                    <div class="flow-node battery-node">
+                        <span>▰</span>
+                        <strong>Battery</strong>
+                        <small>78% charge</small>
+                    </div>
+                </div>
+
+                <div class="solar-note">
+                    <span>✧</span>
+                    These are illustrative readings, not live solar equipment data.
+                    Actual energy flows depend on your system and usage.
+                </div>
+            </div>
+        </section>
+                <!-- CARBON & IMPACT TRACKER -->
+        <section class="impact-section" id="impact">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">FEATURE 05 / ENVIRONMENT</div>
+                    <h2>Carbon &amp; Impact Tracker<span class="accent">.</span></h2>
+                    <p>
+                        Explore how energy choices can influence your estimated
+                        environmental impact.
+                    </p>
+                </div>
+
+                <div class="demo-label"><span></span> ILLUSTRATIVE DATA</div>
+            </div>
+
+            <div class="section-image">
+                <img src="images/carbon-impact.png"
+                     alt="Clean energy and environmental impact"
+                     loading="lazy">
+            </div>
+
+            <div class="impact-metrics">
+                <article class="impact-metric-card">
+                    <span class="impact-icon">🌍</span>
+                    <span class="feature-number">ESTIMATED EMISSIONS</span>
+                    <h3><span id="carbonValue">120.0</span> <small>kg CO₂</small></h3>
+                    <p>Illustrative monthly carbon emissions.</p>
+                </article>
+
+                <article class="impact-metric-card">
+                    <span class="impact-icon">⚡</span>
+                    <span class="feature-number">ENERGY REDUCTION</span>
+                    <h3><span id="energySavedValue">15</span><small>%</small></h3>
+                    <p>A sample energy-reduction goal, not a measured result.</p>
+                </article>
+
+                <article class="impact-metric-card">
+                    <span class="impact-icon">🌱</span>
+                    <span class="feature-number">LOWER-CARBON HABITS</span>
+                    <h3>3 <small>actions</small></h3>
+                    <p>
+                        Switch off unused devices, use efficient appliances,
+                        and review energy usage.
+                    </p>
+                </article>
+            </div>
+
+            <div class="impact-note">
+                <span>✧</span>
+                <p>
+                    These figures are examples for demonstration only. Actual carbon
+                    emissions depend on electricity consumption and the applicable
+                    electricity emissions factor.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <a href="#home" class="logo" aria-label="EcoNexa home">
+            <img class="brand-logo" src="/images/econexa-logo.png" alt="EcoNexa">
+        </a>
+        <p>Smarter energy. Greener living.</p>
+        <span>Demo prototype · Sample data, not live sensor readings</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
