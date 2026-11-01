@@ -1,12 +1,15 @@
 
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
-const db = require('./database');
+const { pool, initializeDatabase } = require('./database');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+
 app.use((req, res, next) => {
     console.log('Incoming request:', req.method, req.url);
     next();
@@ -29,8 +32,8 @@ app.post('/api/test-post', (req, res) => {
     res.json({ message: 'POST route works!' });
 });
 
-// Save an energy reading to SQLite
-app.post('/api/energy-readings', (req, res) => {
+// Save an energy reading to Neon PostgreSQL
+app.post('/api/energy-readings', async (req, res) => {
     const {
         electricityUsageKwh,
         electricityRateRupeesPerKwh,
@@ -64,24 +67,26 @@ app.post('/api/energy-readings', (req, res) => {
     );
 
     try {
-        const result = db.prepare(`
-            INSERT INTO energy_readings (
+        const result = await pool.query(
+            `INSERT INTO energy_readings (
                 electricity_usage_kwh,
                 estimated_bill_rupees,
                 solar_generation_kwh,
                 carbon_emissions_kg,
                 data_type
-            ) VALUES (?, ?, ?, ?, 'simulated')
-        `).run(
-            electricityUsageKwh,
-            estimatedBillRupees,
-            solarGenerationKwh,
-            carbonEmissionsKg
+            ) VALUES ($1, $2, $3, $4, 'simulated')
+            RETURNING id`,
+            [
+                electricityUsageKwh,
+                estimatedBillRupees,
+                solarGenerationKwh,
+                carbonEmissionsKg
+            ]
         );
 
         res.status(201).json({
-            message: 'Energy reading saved to SQLite.',
-            id: result.lastInsertRowid
+            message: 'Energy reading saved to Neon PostgreSQL.',
+            id: result.rows[0].id
         });
     } catch (error) {
         console.error('Database insert error:', error.message);
@@ -92,13 +97,15 @@ app.post('/api/energy-readings', (req, res) => {
 });
 
 // Get the latest saved reading, or demo values if the database is empty
-app.get('/api/energy-readings', (req, res) => {
+app.get('/api/energy-readings', async (req, res) => {
     try {
-        const reading = db.prepare(`
+        const result = await pool.query(`
             SELECT * FROM energy_readings
             ORDER BY id DESC
             LIMIT 1
-        `).get();
+        `);
+
+        const reading = result.rows[0];
 
         if (!reading) {
             return res.json({
@@ -116,18 +123,24 @@ app.get('/api/energy-readings', (req, res) => {
             });
         }
 
+        const usage = Number(reading.electricity_usage_kwh);
+
         res.json({
             project: 'EcoNexa',
             dataType: reading.data_type,
             isLive: false,
             timestamp: reading.recorded_at,
             readings: {
-                electricityUsageKwh: reading.electricity_usage_kwh,
-                estimatedBillRupees: reading.estimated_bill_rupees,
-                solarGenerationKwh: reading.solar_generation_kwh,
-                carbonEmissionsKg: reading.carbon_emissions_kg
+                electricityUsageKwh: usage,
+                estimatedBillRupees: Number(reading.estimated_bill_rupees),
+                electricityRateRupeesPerKwh:
+                    usage > 0
+                        ? Number((Number(reading.estimated_bill_rupees) / usage).toFixed(2))
+                        : 0,
+                solarGenerationKwh: Number(reading.solar_generation_kwh),
+                carbonEmissionsKg: Number(reading.carbon_emissions_kg)
             },
-            message: 'Reading retrieved from the EcoNexa SQLite database.'
+            message: 'Reading retrieved from the EcoNexa Neon PostgreSQL database.'
         });
     } catch (error) {
         console.error('Database read error:', error.message);
@@ -137,18 +150,18 @@ app.get('/api/energy-readings', (req, res) => {
     }
 });
 
-// View recent readings saved in SQLite
-app.get('/api/energy-history', (req, res) => {
+// View recent readings saved in PostgreSQL
+app.get('/api/energy-history', async (req, res) => {
     try {
-        const readings = db.prepare(`
+        const result = await pool.query(`
             SELECT * FROM energy_readings
             ORDER BY id DESC
             LIMIT 50
-        `).all();
+        `);
 
         res.json({
-            count: readings.length,
-            readings
+            count: result.rows.length,
+            readings: result.rows
         });
     } catch (error) {
         console.error('History query error:', error.message);
@@ -158,8 +171,19 @@ app.get('/api/energy-history', (req, res) => {
     }
 });
 
-// Start the server
-app.listen(PORT, () => {
-    console.log('EcoNexa SQLite database server started.');
-    console.log(`EcoNexa is running at http://localhost:${PORT}`);
-});
+// Start locally after initializing the database
+if (require.main === module) {
+    initializeDatabase()
+        .then(() => {
+            app.listen(PORT, () => {
+                console.log('EcoNexa Neon PostgreSQL server started.');
+                console.log(`EcoNexa is running at http://localhost:${PORT}`);
+            });
+        })
+        .catch(error => {
+            console.error('Could not start EcoNexa:', error.message);
+            process.exit(1);
+        });
+}
+
+module.exports = app;

@@ -1,32 +1,37 @@
 
-const Database = require('better-sqlite3');
-const path = require('path');
-const fs = require('fs');
+const { Pool } = require('pg');
 
-// Locate the project's database folder
-const databaseFolder = path.join(__dirname, '..', 'database');
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
+});
 
-// Create the folder if it doesn't exist
-fs.mkdirSync(databaseFolder, { recursive: true });
+// Create the energy readings table
+const initializeDatabase = async () => {
+    try {
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS energy_readings (
+                id BIGSERIAL PRIMARY KEY,
+                electricity_usage_kwh DOUBLE PRECISION NOT NULL,
+                estimated_bill_rupees DOUBLE PRECISION NOT NULL,
+                solar_generation_kwh DOUBLE PRECISION NOT NULL,
+                carbon_emissions_kg DOUBLE PRECISION NOT NULL,
+                data_type TEXT NOT NULL DEFAULT 'simulated',
+                recorded_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+            );
+        `);
 
-// Create or open the SQLite database file
-const databasePath = path.join(databaseFolder, 'econexa.db');
-const db = new Database(databasePath);
+        console.log('EcoNexa Neon PostgreSQL database connected.');
+        console.log('Energy readings table is ready.');
+    } catch (error) {
+        console.error('Database initialization error:', error.message);
+        throw error;
+    }
+};
 
-// Create a table for energy readings
-db.exec(`
-    CREATE TABLE IF NOT EXISTS energy_readings (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        electricity_usage_kwh REAL NOT NULL,
-        estimated_bill_rupees REAL NOT NULL,
-        solar_generation_kwh REAL NOT NULL,
-        carbon_emissions_kg REAL NOT NULL,
-        data_type TEXT NOT NULL DEFAULT 'simulated',
-        recorded_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-    );
-`);
-
-console.log('EcoNexa SQLite database connected.');
-console.log('Energy readings table is ready.');
-
-module.exports = db;
+module.exports = {
+    pool,
+    initializeDatabase
+};
